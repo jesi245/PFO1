@@ -2,9 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>PFO1</title>
+    <title>PFO1 - Práctica Formativa</title>
 </head>
 <body>
-    <h1>Seminario de actualización - DevOps: práctica formativa Obligatoria 1</h1>
+    <h1>Práctica Formativa - seminario de actualización (DevOps)</h1>
+
+    <form id="formUsuario">
+        <label for="usuario">Nombre de usuario:</label>
+        <input type="text" id="usuario" name="usuario" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p id="respuesta"></p>
+
+    <script>
+        // Envío de datos al backend:
+        // usuario: string (nombre de usuario)
+        // contrasena: string (contraseña del usuario)
+
+        document.getElementById('formUsuario').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const usuario = document.getElementById('usuario').value;
+            const contrasena = document.getElementById('contrasena').value;
+
+            fetch('guardar_datos.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `usuario=${encodeURIComponent(usuario)}&contrasena=${encodeURIComponent(contrasena)}`
+            })
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('respuesta').innerText = data;
+            })
+            .catch(err => {
+                document.getElementById('respuesta').innerText = 'Error al enviar los datos';
+            });
+        });
+    </script>
 </body>
 </html>
+
