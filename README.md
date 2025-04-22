@@ -1,2 +1,6 @@
-# PFO1
-Práctica formativa obligatoria 1 (DevOps)
+# PRÁCTICA FORMATIVA
+
+Integrantes:
+
+- Garicoch, Karla
+- Toloza, Jesica
