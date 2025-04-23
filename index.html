@@ -5,32 +5,30 @@
     <title>PFO1 - Práctica Formativa</title>
 </head>
 <body>
-    <h1>Práctica Formativa - seminario de actualización (DevOps)</h1>
+    <h1><b><u>Práctica Formativa - seminario de actualización (DevOps)</u></b></h1>
 
     <form id="formUsuario">
-        <label for="usuario">Nombre de usuario:</label>
-        <input type="text" id="nombreUsuario" name="nombreUsuario" required placeholder="Ingresá tu nombre de usuario">
+        <label for="nombreCompleto">Nombre completo:</label>
+        <input type="text" id="nombreCompleto" name="nombreCompleto" required placeholder="Escribí tu nombre completo">
 
+        <label for="claveSegura">Clave segura:</label>
+        <input type="password" id="claveSegura name="claveSegura" required placeholder="Escribí tu clave segura">
 
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" id="claveUsuario" name="claveUsuario" required placeholder="Ingresá tu contraseña">
-
-
-        <button type="submit">Enviar</button>
+        <button type="submit">Enviar datos</button>
     </form>
 
     <p id="respuesta"></p>
 
     <script>
         // Envío de datos al backend:
-        // usuario: string (nombre de usuario)
-        // contrasena: string (contraseña del usuario)
+        // nombreCompleto: string
+        // claveSegura: string
 
         document.getElementById('formUsuario').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const usuario = document.getElementById('nombreUsuario').value;
-            const contrasena = document.getElementById('claveUsuario').value;
+            const usuario = document.getElementById('nombreCompleto').value;
+            const contrasena = document.getElementById('claveSegura').value;
 
             fetch('guardar_datos.php', {
                 method: 'POST',
@@ -50,4 +48,3 @@
     </script>
 </body>
 </html>
-
