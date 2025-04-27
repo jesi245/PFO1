@@ -1,13 +1,53 @@
-<!DOCTYPE html>
+//<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>PFO1</title>
+    <title>DevOps - Práctica Formativa</title>
 </head>
 <body>
     <h1>DevOps - Práctica Formativa número 1</h1>
-    <p>Avanzaremos con la práctica del seminario</p> <!--Comentario agregado para el Pull Request-->>
 
-    <input type="text" placeholder="Ingresa tu nombre aquí">
+    <p>Avanzaremos con la práctica del seminario</p> 
+
+    <form id="formUsuario">
+        <label for="nombreCompleto">Nombre completo:</label>
+        <input type="text" id="nombreCompleto" name="nombreCompleto" required placeholder="Escribí tu nombre completo">
+
+        <label for="claveSegura">Clave segura:</label>
+        <input type="password" id="claveSegura name="claveSegura" required placeholder="Escribí tu clave segura">
+
+        <button type="submit">Enviar datos</button>
+    </form>
+
+    <p id="respuesta"></p>
+
+    <script>
+        // Envío de datos al backend:
+        // nombreCompleto: string
+        // claveSegura: string
+
+        document.getElementById('formUsuario').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const usuario = document.getElementById('nombreCompleto').value;
+            const contrasena = document.getElementById('claveSegura').value;
+
+            fetch('guardar_datos.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `usuario=${encodeURIComponent(usuario)}&contrasena=${encodeURIComponent(contrasena)}`
+            })
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('respuesta').innerText = data;
+            })
+            .catch(err => {
+                document.getElementById('respuesta').innerText = 'Error al enviar los datos';
+            });
+        });
+    </script>
 </body>
 </html>
+//
